@@ -6,19 +6,35 @@ namespace LeapYear
     {
         public static void Main(string[] args)
         {
-            leapYearProgram();
+            startleapYearProgram(getUserInput());
         }
 
-        public static void leapYearProgram()
+        public static void startleapYearProgram(string userInput)
         {
-            printLeapYear(getUserInput());
+            if(validtor(userInput)){
+                printLeapYear(Convert.ToInt32(userInput));
+            }          
         }
 
-        public static int getUserInput()
+        private static bool validtor(string userInput){
+            try{
+                int intVal = Convert.ToInt32(userInput);
+                if(intVal < 1582){
+                    Console.WriteLine("My guy, we need a year higher than 1581, run program again");
+                    return false;
+                }else return true;
+
+            } catch (FormatException)
+            {   
+                Console.WriteLine("My guy, please write a number, run program again");
+                return false;
+            }
+        }
+
+        public static string getUserInput()
         {
-            var userInput = Console.ReadLine();
-            int intVal = Convert.ToInt32(userInput);
-            return intVal;
+            return Console.ReadLine();
+            
         }
 
         public static void printLeapYear(int year)
