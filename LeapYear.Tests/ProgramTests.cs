@@ -51,5 +51,35 @@ namespace LeapYear.Tests
             // Assert
             Assert.Equal("nay", output);
         }
+
+        [Fact]
+        public void prints_need_number(){
+             // Arrange
+            var writer = new StringWriter();
+            Console.SetOut(writer);
+            
+            // Act
+            Program.startleapYearProgram("hello");
+            var output = writer.GetStringBuilder().ToString().Trim();
+
+            // Assert
+            Assert.Equal("My guy, please write a number, run program again", output);
+            return;
+        }
+
+       [Fact]
+       public void prints_need_higher_number(){
+            // Arrange
+           var writer = new StringWriter();
+           Console.SetOut(writer);
+
+           // Act
+           Program.startleapYearProgram("1000");
+           var output = writer.GetStringBuilder().ToString().Trim();
+
+           // Assert
+           Assert.Equal("My guy, we need a year higher than 1581, run program again", output);
+           return;
+       }
     }
 }
